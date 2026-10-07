@@ -1,0 +1,79 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+using namespace std;
+
+const double PI = 3.14159265358979323846;
+
+// ABSTRAKSI: class abstrak hanya mendefinisikan "apa" yang harus ada
+// GENERALISASI: Bentuk adalah class umum dari Lingkaran, Persegi, PersegiPanjang
+class Bentuk {
+protected:
+    string nama;
+
+public:
+    Bentuk(string nama) : nama(nama) {}
+    virtual ~Bentuk() {}
+
+    virtual double hitungLuas() = 0;      // pure virtual (abstrak)
+    virtual double hitungKeliling() = 0;  // pure virtual (abstrak)
+
+    // REUSABILITY: ditulis sekali, dipakai ulang oleh semua subclass
+    void tampilkanInfo() {
+        cout << fixed << setprecision(2);
+        cout << "Bentuk   : " << nama << endl;
+        cout << "Luas     : " << hitungLuas() << endl;
+        cout << "Keliling : " << hitungKeliling() << endl;
+        cout << "---------------------------" << endl;
+    }
+};
+
+class Lingkaran : public Bentuk {
+private:
+    double r;
+
+public:
+    Lingkaran(double r) : Bentuk("Lingkaran"), r(r) {}
+    double hitungLuas() override { return PI * r * r; }
+    double hitungKeliling() override { return 2 * PI * r; }
+};
+
+class Persegi : public Bentuk {
+private:
+    double sisi;
+
+public:
+    Persegi(double sisi) : Bentuk("Persegi"), sisi(sisi) {}
+    double hitungLuas() override { return sisi * sisi; }
+    double hitungKeliling() override { return 4 * sisi; }
+};
+
+class PersegiPanjang : public Bentuk {
+private:
+    double p, l;
+
+public:
+    PersegiPanjang(double p, double l) : Bentuk("Persegi Panjang"), p(p), l(l) {}
+    double hitungLuas() override { return p * l; }
+    double hitungKeliling() override { return 2 * (p + l); }
+};
+
+int main() {
+    // Semua objek disimpan dalam tipe umum (generalisasi)
+    vector<Bentuk*> daftar;
+    daftar.push_back(new Lingkaran(7));
+    daftar.push_back(new Persegi(5));
+    daftar.push_back(new PersegiPanjang(6, 4));
+
+    // Satu perulangan, satu method yang dipakai ulang (reusability)
+    for (Bentuk* b : daftar) {
+        b->tampilkanInfo();
+    }
+
+    for (Bentuk* b : daftar) {
+        delete b;
+    }
+
+    return 0;
+}
