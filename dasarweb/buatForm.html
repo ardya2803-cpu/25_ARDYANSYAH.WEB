@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Membuat Form</title>
+</head>
+<body>
+    <form method="GET">
+        <input type="text" name="nama"
+               size="20" value="Enter your name here.">
+        <br><br>
+
+        <input type="text" name="alamat"
+               size="20" value="Enter your address here.">
+        <br><br>
+
+        Are you a student?
+        <input type="checkbox" name="student">
+        <br><br>
+
+        How old are you?
+        <br>
+        <input type="radio" name="umur" value="10-15">
+        10 - 15
+        <br>
+        <input type="radio" name="umur" value="16-20">
+        16 - 20
+        <br>
+        <input type="radio" name="umur" value="21-25">
+        21 - 25
+        <br><br>
+
+        Which one do you have?
+        <br>
+        <input type="checkbox" name="vehicle"
+               value="Bike"> I have a bike.
+        <br>
+        <input type="checkbox" name="vehicle"
+               value="Car"> I have a car.
+        <br>
+        <input type="checkbox" name="vehicle"
+               value="Boat"> I have a boat.
+        <br>
+        <input type="checkbox" name="vehicle"
+               value="Plane"> I have a plane.
+        <br><br>
+
+        Where are you from?
+        <br>
+        <select name="negara" size="1">
+            <option value="USA">USA</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Canada">Canada</option>
+            <option value="Indonesia" selected>
+                Indonesia
+            </option>
+        </select>
+        <br><br>
+
+        Enter your private code
+        <br>
+        <input type="password" name="password">
+        <br><br>
+
+        Enter your comment
+        <br>
+        <textarea name="komentar" cols="30" rows="3">
+        </textarea>
+        <br><br>
+
+        <input type="submit" value="Send">
+        <input type="reset" value="Clear">
+    </form>
+</body>
+</html>
